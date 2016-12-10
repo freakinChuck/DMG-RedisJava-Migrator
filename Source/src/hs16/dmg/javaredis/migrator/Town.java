@@ -7,7 +7,6 @@ public class Town {
     private String kanton;
     private int bfsNumber;
     private String townName;
-    private String zipCode;
 
     public String getKanton() {
         return kanton;
@@ -33,11 +32,4 @@ public class Town {
         this.townName = townName;
     }
 
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
 }

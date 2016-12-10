@@ -26,12 +26,16 @@ public class CsvParser {
 
         String headerLine = fileLines.remove(0);
 
+        List<Integer> alreadyUsedBfsCodes = new LinkedList<>();
 
         for (String line:
              fileLines) {
 
-            townList.add(ParseTown(line));
-
+            Town town = ParseTown(line);
+            if (!alreadyUsedBfsCodes.contains(town.getBfsNumber())) {
+                townList.add(town);
+                alreadyUsedBfsCodes.add(town.getBfsNumber());
+            }
         }
         return townList;
     }
@@ -40,8 +44,7 @@ public class CsvParser {
 
         final int kantonIndex = 0;
         final int bfsCodeIndex = 1;
-        final int townNameIndex = 4;
-        final int zipCodeIndex = 3;
+        final int townNameIndex = 2;
 
 
         String[] items = line.split(";");
@@ -54,7 +57,6 @@ public class CsvParser {
         newItem.setBfsNumber(Integer.parseInt(items[bfsCodeIndex]));
         newItem.setKanton(items[kantonIndex]);
         newItem.setTownName(items[townNameIndex]);
-        newItem.setZipCode(items[zipCodeIndex]);
 
         return newItem;
     }
