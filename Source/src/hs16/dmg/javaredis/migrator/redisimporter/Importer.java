@@ -33,9 +33,10 @@ public class Importer {
                                 .toArray()
                     );
 
+            db.del(String.format(kantonTownListFormat, kanton));
             for (Object bfsNumberObject : allBfsNumbersByKanton) {
                 Integer bfsNumber = (Integer)bfsNumberObject;
-                db.set(
+                db.lpush(
                         String.format(kantonTownListFormat, kanton),
                         Integer.toString(bfsNumber)
                 );
