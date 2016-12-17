@@ -12,24 +12,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        final String townListPath = "TODO / DROPBOX";
-        final String citizenEntryPath = "TODO / DROPBOX";
+        final String townListPath = "/Users/silvio/Dropbox/DMG.H16 Gruppe 9/_NoSQL Projekt/Datenbasis/PostleitzahlverzeichnisUTF8.csv";
+        final String citizenEntryPath = "/Users/silvio/Dropbox/DMG.H16 Gruppe 9/_NoSQL Projekt/Datenbasis/EinwohnerstatistikUTF8.csv";
 
         CsvParser parser = new CsvParser();
-        Importer importer = new Importer();
 
         List<Town> townList = parser.ParseTowns(townListPath);
         List<CitizenNumberEntry> citizenList = parser.ParseCitizenNumbers(citizenEntryPath);
 
+        Importer importer = new Importer();
+
         importer.ImportTowns(townList);
-
-        //Jedis db = new Jedis("192.168.99.100", 32770);
-        //String ping = db.ping();
-
-        //db.set("TestString", "Redis");
-
-
-        //System.out.print(ping);
-        //System.out.print(db.get("TestString"));
+        importer.ImportStatistic(citizenList);
     }
 }
